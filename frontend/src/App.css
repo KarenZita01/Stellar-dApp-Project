@@ -204,7 +204,7 @@ body {
   border: 1px solid var(--border);
 }
 
-.//-form-group {
+.form-group {
   margin-bottom: 1.5rem;
   text-align: left;
 }
