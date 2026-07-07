@@ -10,10 +10,11 @@ impl Treasury {
         env.storage().instance().set(&Symbol::new(&env, "admin"), &admin);
     }
 
-     pub fn collect_fee(env: Env, token_address: Address, from: Address, amount: i128) {
+       pub fn collect_fee(env: Env, token_address: Address, from: Address, amount: i128) {
         let admin: Address = env.storage().instance().get(&Symbol::new(&env, "admin")).unwrap();
         let token = token::Client::from_address(&env, &token_address);
         token.transfer(&from, &admin, &amount);
+    }
     }
         
         // Transfer fee to the treasury admin
