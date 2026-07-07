@@ -10,10 +10,11 @@ impl Treasury {
         env.storage().instance().set(&Symbol::new(&env, "admin"), &admin);
     }
 
-    pub fn collect_fee(env: Env, token: token::Client, from: Address, amount: i128) {
-        // Only allowed if called by an authorized contract (simplified for demo)
-        // In production, we would check the caller's identity
+     pub fn collect_fee(env: Env, token_address: Address, from: Address, amount: i128) {
         let admin: Address = env.storage().instance().get(&Symbol::new(&env, "admin")).unwrap();
+        let token = token::Client::from_address(&env, &token_address);
+        token.transfer(&from, &admin, &amount);
+    }
         
         // Transfer fee to the treasury admin
         token.transfer(&from, &admin, &amount);
