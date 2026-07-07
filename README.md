@@ -86,4 +86,4 @@ The project includes a GitHub Actions workflow (`.github/workflows/ci.yml`) that
 - **Test Output**: `frontend/public/screenshots/tests-passed.png`
 
 ### Demo Video
-- **Link**: [Insert your Loom/YouTube link here]
+- **Link**: (https://youtube.com/shorts/TXLYggisqWM?si=Gku3nGGbGJuRRx2o)
