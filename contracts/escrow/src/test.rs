@@ -15,15 +15,15 @@ fn create_env_and_token() -> (Env, Address, Address, Address, Address, Address) 
     let env = Env::default();
     env.mock_all_auths();
 
-    let buyer     = Address::generate(&env);
-    let seller    = Address::generate(&env);
-    let treasury  = Address::generate(&env);
+    let buyer       = Address::generate(&env);
+    let seller      = Address::generate(&env);
+    let treasury    = Address::generate(&env);
     let token_admin = Address::generate(&env);
 
-    // Create a Stellar asset contract token and mint to buyer
+    // Create a Stellar asset contract token; use StellarAssetClient to mint
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone()).address();
-    let token_client = token::Client::new(&env, &token_id);
-    token_client.mint(&buyer, &10_000_i128);
+    let sac = token::StellarAssetClient::new(&env, &token_id);
+    sac.mint(&buyer, &10_000_i128);
 
     let escrow_id = env.register(Escrow, ());
 
@@ -59,7 +59,7 @@ fn test_fund_transfers_tokens_and_sets_funded() {
     client.fund();
 
     assert_eq!(client.get_status(), EscrowStatus::Funded);
-    assert_eq!(token_client.balance(&buyer),    buyer_before - 200);
+    assert_eq!(token_client.balance(&buyer),     buyer_before - 200);
     assert_eq!(token_client.balance(&escrow_id), contract_before + 200);
 }
 

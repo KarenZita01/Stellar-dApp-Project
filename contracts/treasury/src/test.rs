@@ -18,10 +18,10 @@ fn setup_env() -> (Env, Address, Address, Address, Address) {
     let admin     = Address::generate(&env);
     let depositor = Address::generate(&env);
 
-    // Create token and mint to depositor
+    // Create token; use StellarAssetClient (admin interface) to mint
     let token_id = env.register_stellar_asset_contract_v2(admin.clone()).address();
-    let token_client = token::Client::new(&env, &token_id);
-    token_client.mint(&depositor, &5_000_i128);
+    let sac = token::StellarAssetClient::new(&env, &token_id);
+    sac.mint(&depositor, &5_000_i128);
 
     let treasury_id = env.register(Treasury, ());
 
