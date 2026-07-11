@@ -15,9 +15,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Rust toolchain (stable)
-        uses: dtolnay/rust-toolchain@stable
+      # soroban-sdk 22.0.6 requires rust-version = "1.79.0"
+      # Using stable (latest) causes ed25519-dalek/rand_core trait conflicts
+      # in soroban-env-host 22.1.3. Pin to 1.79.0 to match the SDK's MSRV.
+      - name: Install Rust 1.79.0 + wasm32 target
+        uses: dtolnay/rust-toolchain@master
         with:
+          toolchain: "1.79.0"
           targets: wasm32-unknown-unknown
 
       - name: Cache Cargo registry
@@ -26,8 +30,8 @@ jobs:
           path: |
             ~/.cargo/registry
             ~/.cargo/git
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: ${{ runner.os }}-cargo-
+          key: ${{ runner.os }}-cargo-1.79-${{ hashFiles('**/Cargo.toml') }}
+          restore-keys: ${{ runner.os }}-cargo-1.79-
 
       - name: Build Treasury contract (WASM)
         working-directory: contracts/treasury
