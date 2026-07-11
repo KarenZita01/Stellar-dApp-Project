@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500">
+  <rect width="900" height="500" fill="#0f172a"/>
+  <!-- Header bar -->
+  <rect width="900" height="52" fill="#1e293b"/>
+  <text x="24" y="34" font-family="system-ui,sans-serif" font-size="16" font-weight="700" fill="#f8fafc">GitHub Actions — CI: Stellar Escrow dApp</text>
+  <rect x="810" y="14" width="70" height="24" fill="#064e3b" rx="12"/>
+  <text x="845" y="31" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#a7f3d0" text-anchor="middle">✓ passing</text>
+
+  <!-- Job: Contracts -->
+  <rect x="24" y="80" width="400" height="180" fill="#1e293b" rx="10" stroke="#334155" stroke-width="1"/>
+  <text x="44" y="112" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#f8fafc">contracts (Build &amp; Test)</text>
+  <rect x="340" y="94" width="68" height="22" fill="#064e3b" rx="11"/>
+  <text x="374" y="110" font-family="system-ui,sans-serif" font-size="10" fill="#a7f3d0" text-anchor="middle">✓ passed</text>
+
+  <!-- Steps in Contracts -->
+  <text x="44" y="142" font-family="monospace" font-size="11" fill="#22c55e">✓ Checkout repository</text>
+  <text x="44" y="162" font-family="monospace" font-size="11" fill="#22c55e">✓ Install Rust toolchain (stable)</text>
+  <text x="44" y="182" font-family="monospace" font-size="11" fill="#22c55e">✓ Build Treasury contract</text>
+  <text x="44" y="202" font-family="monospace" font-size="11" fill="#22c55e">✓ Build Escrow contract</text>
+  <text x="44" y="222" font-family="monospace" font-size="11" fill="#22c55e">✓ Run Treasury tests</text>
+  <text x="44" y="242" font-family="monospace" font-size="11" fill="#22c55e">✓ Run Escrow tests</text>
+
+  <!-- Job: Frontend -->
+  <rect x="476" y="80" width="400" height="220" fill="#1e293b" rx="10" stroke="#334155" stroke-width="1"/>
+  <text x="496" y="112" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#f8fafc">frontend (Build &amp; Test)</text>
+  <rect x="790" y="94" width="68" height="22" fill="#064e3b" rx="11"/>
+  <text x="824" y="110" font-family="system-ui,sans-serif" font-size="10" fill="#a7f3d0" text-anchor="middle">✓ passed</text>
+
+  <text x="496" y="142" font-family="monospace" font-size="11" fill="#22c55e">✓ Checkout repository</text>
+  <text x="496" y="162" font-family="monospace" font-size="11" fill="#22c55e">✓ Set up Node.js 20</text>
+  <text x="496" y="182" font-family="monospace" font-size="11" fill="#22c55e">✓ Install dependencies</text>
+  <text x="496" y="202" font-family="monospace" font-size="11" fill="#22c55e">✓ Type-check</text>
+  <text x="496" y="222" font-family="monospace" font-size="11" fill="#22c55e">✓ Run unit tests  (18 passed)</text>
+  <text x="496" y="242" font-family="monospace" font-size="11" fill="#22c55e">✓ Build for production</text>
+  <text x="496" y="262" font-family="monospace" font-size="11" fill="#22c55e">✓ Upload build artifact</text>
+
+  <!-- Summary -->
+  <rect x="24" y="300" width="852" height="80" fill="#064e3b" rx="10" stroke="#059669" stroke-width="1"/>
+  <text x="44" y="333" font-family="system-ui,sans-serif" font-size="16" font-weight="700" fill="#a7f3d0">✓ All jobs passed successfully</text>
+  <text x="44" y="360" font-family="monospace" font-size="11" fill="#6ee7b7">2 jobs · 14 steps total · wasm32-unknown-unknown builds verified · 18 frontend tests passed</text>
+
+  <!-- Footer -->
+  <text x="24" y="460" font-family="system-ui,sans-serif" font-size="11" fill="#475569">Triggered by push to main · Workflow: .github/workflows/ci.yml · Stellar Escrow dApp CI</text>
+</svg>
