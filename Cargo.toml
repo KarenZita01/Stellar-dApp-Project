@@ -4,6 +4,3 @@ members = [
     "contracts/escrow",
     "contracts/treasury",
 ]
-
-[workspace.package]
-rust-version = "1.84.0"
