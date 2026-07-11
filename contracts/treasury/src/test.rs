@@ -13,7 +13,9 @@ use crate::{Treasury, TreasuryClient};
 
 fn setup_env() -> (Env, Address, Address, Address, Address) {
     let env = Env::default();
-    env.mock_all_auths();
+    // Allow non-root auth so that token.transfer() inside collect_fee
+    // (a sub-contract call) is also mocked correctly.
+    env.mock_all_auths_allowing_non_root_auth();
 
     let admin     = Address::generate(&env);
     let depositor = Address::generate(&env);

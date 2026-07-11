@@ -13,7 +13,9 @@ use crate::{Escrow, EscrowClient, EscrowStatus};
 
 fn create_env_and_token() -> (Env, Address, Address, Address, Address, Address) {
     let env = Env::default();
-    env.mock_all_auths();
+    // Allow non-root auth so that token.transfer() inside fund()
+    // (a sub-contract call initiated by the escrow contract) is mocked.
+    env.mock_all_auths_allowing_non_root_auth();
 
     let buyer       = Address::generate(&env);
     let seller      = Address::generate(&env);
