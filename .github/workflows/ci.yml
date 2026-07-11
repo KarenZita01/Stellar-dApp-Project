@@ -26,25 +26,24 @@ jobs:
           path: |
             ~/.cargo/registry
             ~/.cargo/git
-            target
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: ${{ runner.os }}-cargo-
 
-      - name: Build Treasury contract
+      - name: Build Treasury contract (WASM)
         working-directory: contracts/treasury
         run: cargo build --target wasm32-unknown-unknown --release
 
-      - name: Build Escrow contract
+      - name: Build Escrow contract (WASM)
         working-directory: contracts/escrow
         run: cargo build --target wasm32-unknown-unknown --release
 
-      - name: Run Treasury tests
+      - name: Test Treasury contract
         working-directory: contracts/treasury
-        run: cargo test --features testutils 2>&1 || cargo test
+        run: cargo test
 
-      - name: Run Escrow tests
+      - name: Test Escrow contract
         working-directory: contracts/escrow
-        run: cargo test --features testutils 2>&1 || cargo test
+        run: cargo test
 
   # ── Frontend Build & Test ───────────────────────────────────────────────
   frontend:
@@ -58,7 +57,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Set up Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -68,16 +67,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Type-check
+      - name: TypeScript type-check
         run: npx tsc --noEmit
 
-      - name: Run unit tests
+      - name: Run unit tests (Vitest)
         run: npm test
 
-      - name: Build for production
+      - name: Production build
         run: npm run build
 
-      - name: Upload build artifact
+      - name: Upload dist artifact
         uses: actions/upload-artifact@v4
         with:
           name: frontend-dist
